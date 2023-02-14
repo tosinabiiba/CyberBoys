@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <title>Fridge Inventory</title>
+</head>
+<body>
+  <h1>Fridge Inventory</h1>
+  <form id="add-item-form">
+    <label for="item-name">Item Name:</label><br>
+    <input type="text" id="item-name" name="item-name"><br>
+    <label for="item-quantity">Quantity:</label><br>
+    <input type="number" id="item-quantity" name="item-quantity"><br><br>
+    <button type="submit">Add Item</button>
+  </form> 
+  <table id="inventory">
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+    </tr>
+  </table>
+  <h2>Recipe Finder</h2>
+  <form id="recipe-search-form">
+    <label for="ingredient">Ingredient:</label><br>
+    <input type="text" id="ingredient" name="ingredient"><br><br>
+    <button type="submit">Search</button>
+  </form> 
+  <div id="recipe-results"></div>
+</body>
+</html>

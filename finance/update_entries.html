@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Expenses Tracker</title>
+</head>
+<body>
+  <h1>Expenses Tracker</h1>
+
+  <!-- Update Form -->
+  <form id="update-form">
+    <label for="bills">Bills:</label>
+    <input type="text" id="bills" name="bills">
+    <label for="amount">Amount:</label>
+    <input type="text" id="amount" name="amount">
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Expenses Table -->
+  <table id="expenses-table">
+    <tr>
+      <th>Bills</th>
+      <th>Amount</th>
+    </tr>
+  </table>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById("update-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "update.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          updateExpensesTable();
+        }
+      };
+      xhr.send("bills=" + document.getElementById("bills").value + "&amount=" + document.getElementById("amount").value);
+    });
+
+    function updateExpensesTable() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "get-expenses.php", true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          document.getElementById("expenses-table").innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    }
+
+    updateExpensesTable();
+  </script>
+</body>
+</html>
